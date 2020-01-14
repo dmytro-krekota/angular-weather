@@ -1,7 +1,7 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ChangeDetectionStrategy} from '@angular/core';
 import {ApiService} from 'src/aw/shared/services/api.service';
 import {City} from 'src/aw/shared/types/city.interface';
-import {CityModel} from 'src/aw/shared/types/city-model.interface';
+import {WeatherData} from 'src/aw/shared/types/weather-data.interface';
 
 @Component({
   selector: 'aw-cities',
@@ -36,8 +36,8 @@ export class CitiesComponent implements OnInit {
   constructor(private apiService: ApiService) {}
 
   ngOnInit() {
-    this.apiService.getCities(this.cities.map((item: City) => item.id)).subscribe((cityModels: CityModel[]) => {
-      cityModels.forEach((cityModel, index) => {
+    this.apiService.getCities(this.cities.map((item: City) => item.id)).subscribe((weatherData: WeatherData[]) => {
+      weatherData.forEach((cityModel, index) => {
         this.cities[index].averageTemperature = cityModel.main.temp;
         this.cities[index].windSpeed = cityModel.wind.speed;
       });
@@ -46,5 +46,12 @@ export class CitiesComponent implements OnInit {
 
   selectCity(city: City) {
     this.selectedCity = city;
+    this.apiService.getCityForecast(city.id).subscribe((weatherData: WeatherData[]) => {
+      city.forecast = weatherData.map((item: WeatherData) => ({
+        averageTemperature: item.main.temp,
+        windSpeed: item.wind.speed,
+        dateTime: item.dt_txt
+      }));
+    });
   }
 }

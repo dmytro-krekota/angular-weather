@@ -12,3 +12,5 @@
     </mat-card-content>
   </mat-card>
 </div>
+
+<aw-forecast-chart *ngIf="selectedCity?.forecast" [data]="selectedCity.forecast"></aw-forecast-chart>
