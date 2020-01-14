@@ -45,13 +45,15 @@ export class CitiesComponent implements OnInit {
   }
 
   selectCity(city: City) {
-    this.selectedCity = city;
-    this.apiService.getCityForecast(city.id).subscribe((weatherData: WeatherData[]) => {
-      city.forecast = weatherData.map((item: WeatherData) => ({
-        averageTemperature: item.main.temp,
-        windSpeed: item.wind.speed,
-        dateTime: item.dt_txt
-      }));
-    });
+    if (city !== this.selectedCity) {
+      this.apiService.getCityForecast(city.id).subscribe((weatherData: WeatherData[]) => {
+        this.selectedCity = city;
+        this.selectedCity.forecast = weatherData.map((item: WeatherData) => ({
+          averageTemperature: item.main.temp,
+          windSpeed: item.wind.speed,
+          dateTime: item.dt_txt
+        }));
+      });
+    }
   }
 }

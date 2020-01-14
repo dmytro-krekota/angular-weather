@@ -21,4 +21,4 @@ Lint files: `npm run lint`.
 
 ---
 
-Link to the application: https://dmytro-krekota.github.io/angular-weather/dist/#/
+Link to the application: https://dmytro-krekota.github.io/angular-weather/dist/index.html
