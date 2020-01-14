@@ -28,6 +28,4 @@ export class ApiService {
       )
       .pipe(map((data: any) => data.list));
   }
-
-  // https://api.openweathermap.org/data/2.5/forecast?id=703448&units=metric&appid=897be757577d830e1c3ce159e36e8dda
 }
