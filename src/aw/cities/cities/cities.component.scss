@@ -1,0 +1,26 @@
+:host {
+    display: flex;
+    padding: 20px;
+}
+
+.cities-list {
+    display: flex;
+    width: 100%;
+
+}
+
+.city-item {
+    width: 100%;
+    cursor: pointer;
+    transition: 0.5s;
+
+    &:not(:last-child) {
+        margin-right: 20px;
+    }
+
+    &.selected {
+        mat-card-title {
+            text-decoration: underline;
+        }
+    }
+}

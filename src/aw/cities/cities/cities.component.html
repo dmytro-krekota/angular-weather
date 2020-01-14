@@ -1,0 +1,14 @@
+<div class="cities-list">
+  <mat-card
+    *ngFor="let city of cities"
+    class="city-item"
+    (click)="selectCity(city)"
+    [ngClass]="{selected: selectedCity === city}"
+  >
+    <mat-card-title> {{ city.name }}</mat-card-title>
+    <mat-card-content>
+      <div *ngIf="city.averageTemperature">{{ city.averageTemperature }} °C</div>
+      <div *ngIf="city.windSpeed">{{ city.windSpeed }} m/s</div>
+    </mat-card-content>
+  </mat-card>
+</div>

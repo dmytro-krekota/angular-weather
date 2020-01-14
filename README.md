@@ -1,2 +1,3 @@
-# angular-weather
+# AngularWeather
+
 Using API from https://openweathermap.org/
